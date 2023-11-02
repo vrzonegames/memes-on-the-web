@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Random Meme Generator</title>
     <style>
@@ -17,19 +16,42 @@
             align-items: center;
             font-family: Arial, sans-serif;
         }
-        
+
         #meme-container {
             max-width: 80%;
             margin: 0 auto;
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #upload-button {
+            padding: 10px 20px;
+            background-color: #27ae60;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        
+        #upload-button:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        #upload-input {
+            display: none;
         }
     </style>
 </head>
-
 <body>
     <div id="meme-container">
         <!-- Memes will be displayed here -->
     </div>
+
+    <!-- Upload Meme -->
+    <label for="upload-input" id="upload-button">Upload Meme</label>
+    <input type="file" id="upload-input" accept="image/*">
 
     <script>
         // Array of meme URLs
@@ -50,7 +72,21 @@
 
         // Generate a random meme when the page loads
         generateRandomMeme();
+
+        // Handle Upload button click
+        var uploadButton = document.getElementById("upload-button");
+        var uploadInput = document.getElementById("upload-input");
+
+        uploadButton.addEventListener("click", function() {
+            uploadInput.click();
+        });
+
+        // Handle selected file
+        uploadInput.addEventListener("change", function(event) {
+            var file = event.target.files[0];
+            // Handle the uploaded file here
+            console.log("Uploaded file:", file);
+        });
     </script>
 </body>
-
 </html>
