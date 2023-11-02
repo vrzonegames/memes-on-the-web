@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Random Meme Generator</title>
     <style>
-        /* Your CSS styles here */
-        /* ... */
+        body {
+            background-image: url('https://media.gq.com.mx/photos/5be9c20dba170c07d7cfc9b3/master/w_1600%2Cc_limit/los_memes_te_estan_haciendo_gordo_2638.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        #meme-container {
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
     <div id="meme-container">
         <!-- Memes will be displayed here -->
     </div>
 
-    <!-- Upload Meme Form -->
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="meme" accept="image/jpeg">
-        <button type="submit">Upload Meme</button>
-    </form>
-
     <script>
         // Array of meme URLs
         var memes = [
-            "meme1.jpg",
-            "meme2.jpg",
-            "meme3.jpg",
+            "https://media.sproutsocial.com/uploads/meme-example.jpg",
+            "https://media.npr.org/assets/img/2015/03/03/overly_custom-39399d2cf8b6395770e3f10fd45b22ce39df70d4-s1100-c50.jpg",
+            "https://dontgetserious.com/wp-content/uploads/2021/10/Sweat-Memes-9.jpeg",
             // Add more meme URLs here
         ];
 
@@ -37,27 +50,7 @@
 
         // Generate a random meme when the page loads
         generateRandomMeme();
-
-        // Handle Upload button click
-        var uploadButton = document.querySelector("button[type='submit']");
-        var uploadInput = document.querySelector("input[type='file']");
-
-        uploadButton.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent form submission
-
-            if (uploadInput.files.length > 0) {
-                var file = uploadInput.files[0];
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    var uploadedMeme = e.target.result;
-                    memes.push(uploadedMeme);
-                    generateRandomMeme();
-                };
-
-                reader.readAsDataURL(file); // Read the file as a Data URL
-            }
-        });
     </script>
 </body>
+
 </html>
