@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Random Meme Generator</title>
     <style>
@@ -22,34 +23,16 @@
             margin: 0 auto;
             text-align: center;
         }
-        
-        #upload-input {
-            display: none;
-        }
-        
-        #upload-label {
-            display: inline-block;
-            background-color: #fff;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        
-        #upload-label:hover {
-            background-color: #eee;
-        }
     </style>
 </head>
+
 <body>
     <div id="meme-container">
-        <input type="file" id="upload-input" accept="image/*" onchange="handleUpload(event)">
-        <label for="upload-input" id="upload-label">Upload Image</label>
-        <br>
         <!-- Memes will be displayed here -->
     </div>
 
     <script>
+        // Array of meme URLs
         var memes = [
             "https://media.sproutsocial.com/uploads/meme-example.jpg",
             "https://media.npr.org/assets/img/2015/03/03/overly_custom-39399d2cf8b6395770e3f10fd45b22ce39df70d4-s1100-c50.jpg",
@@ -57,6 +40,7 @@
             // Add more meme URLs here
         ];
 
+        // Function to generate a random meme
         function generateRandomMeme() {
             var randomIndex = Math.floor(Math.random() * memes.length);
             var randomMeme = memes[randomIndex];
@@ -64,20 +48,9 @@
             memeContainer.innerHTML = "<img src='" + randomMeme + "' alt='Random Meme'>";
         }
 
-        function handleUpload(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function (event) {
-                var uploadedMeme = event.target.result;
-                var memeContainer = document.getElementById("meme-container");
-                memeContainer.innerHTML = "<img src='" + uploadedMeme + "' alt='Uploaded Meme'>";
-            };
-
-            reader.readAsDataURL(file);
-        }
-
+        // Generate a random meme when the page loads
         generateRandomMeme();
     </script>
 </body>
+
 </html>
