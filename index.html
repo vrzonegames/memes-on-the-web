@@ -3,45 +3,8 @@
 <head>
     <title>Random Meme Generator</title>
     <style>
-        body {
-            background-image: url('https://media.gq.com.mx/photos/5be9c20dba170c07d7cfc9b3/master/w_1600%2Cc_limit/los_memes_te_estan_haciendo_gordo_2638.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
-
-        #meme-container {
-            max-width: 80%;
-            margin: 0 auto;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #upload-button {
-            padding: 10px 20px;
-            background-color: #27ae60;
-            border: none;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 4px;
-        }
-        
-        #upload-button:hover {
-            cursor: pointer;
-            opacity: 0.8;
-        }
-
-        #upload-input {
-            display: none;
-        }
+        /* Your CSS styles here */
+        /* ... */
     </style>
 </head>
 <body>
@@ -49,16 +12,18 @@
         <!-- Memes will be displayed here -->
     </div>
 
-    <!-- Upload Meme -->
-    <label for="upload-input" id="upload-button">Upload Meme</label>
-    <input type="file" id="upload-input" accept="image/*">
+    <!-- Upload Meme Form -->
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="meme" accept="image/jpeg">
+        <button type="submit">Upload Meme</button>
+    </form>
 
     <script>
         // Array of meme URLs
         var memes = [
-            "https://media.sproutsocial.com/uploads/meme-example.jpg",
-            "https://media.npr.org/assets/img/2015/03/03/overly_custom-39399d2cf8b6395770e3f10fd45b22ce39df70d4-s1100-c50.jpg",
-            "https://dontgetserious.com/wp-content/uploads/2021/10/Sweat-Memes-9.jpeg",
+            "meme1.jpg",
+            "meme2.jpg",
+            "meme3.jpg",
             // Add more meme URLs here
         ];
 
@@ -74,18 +39,24 @@
         generateRandomMeme();
 
         // Handle Upload button click
-        var uploadButton = document.getElementById("upload-button");
-        var uploadInput = document.getElementById("upload-input");
+        var uploadButton = document.querySelector("button[type='submit']");
+        var uploadInput = document.querySelector("input[type='file']");
 
-        uploadButton.addEventListener("click", function() {
-            uploadInput.click();
-        });
+        uploadButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
 
-        // Handle selected file
-        uploadInput.addEventListener("change", function(event) {
-            var file = event.target.files[0];
-            // Handle the uploaded file here
-            console.log("Uploaded file:", file);
+            if (uploadInput.files.length > 0) {
+                var file = uploadInput.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var uploadedMeme = e.target.result;
+                    memes.push(uploadedMeme);
+                    generateRandomMeme();
+                };
+
+                reader.readAsDataURL(file); // Read the file as a Data URL
+            }
         });
     </script>
 </body>
