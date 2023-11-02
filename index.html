@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Random Meme Generator</title>
-</head>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
 
+        #meme-container {
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
     <div id="meme-container">
         <!-- Memes will be displayed here -->
@@ -12,10 +31,10 @@
 
     <script>
         // Array of meme URLs
-        var memes = [ <
-            td id = "image" > < img src = "meme1.jpg" > < /td> <
-            td id = "image" > < img src = "meme2.jpg" > < /td> <
-            td id = "image" > < img src = "meme3.jpg" > < /td>
+        var memes = [
+            "meme1.jpg",
+            "meme2.jpg",
+            "meme3.jpg",
             // Add more meme URLs here
         ];
 
@@ -31,5 +50,4 @@
         generateRandomMeme();
     </script>
 </body>
-
 </html>
